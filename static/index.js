@@ -14,7 +14,7 @@ let puzzle =
 ]
 
 function populateSudokuGrid(puzzle) {
-    const grid = document.getElementById('sudoku-grid');
+    const grid = document.querySelector('.sudoku-grid');
     for (let row = 0; row < 9; row++) {
         const tr = document.createElement('tr');
         for (let col = 0; col < 9; col++) {

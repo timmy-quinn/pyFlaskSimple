@@ -1,0 +1,32 @@
+body {
+    background-color: rgb(255, 240, 215);
+    text-align: center;
+    font-family: Helvetica, Arial, sans-serif; 
+}
+
+.title { 
+    text-align: center;
+}
+
+.sudoku-container{
+    width: 75%; 
+    aspect-ratio: 1/1; 
+    font-size: 1.25rem; 
+    font-weight: 400; 
+    overflow: auto;
+}
+
+.sudoku-grid {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse; 
+    border: 1px solid;
+}
+
+
+.sudoku-grid th
+
+.sudoku-grid td {
+    border: 10px solid;
+    border-color: rgb(0, 0, 0); 
+}

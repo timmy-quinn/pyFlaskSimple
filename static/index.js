@@ -1,5 +1,18 @@
 console.log("i am running")
 
+let puzzle = 
+[
+    [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
+    [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], 
+    [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], 
+    [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], 
+    [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], 
+    [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], 
+    [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], 
+    [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], 
+    [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]  
+]
+
 function populateSudokuGrid(puzzle) {
     const grid = document.getElementById('sudoku-grid');
     for (let row = 0; row < 9; row++) {

@@ -110,13 +110,16 @@ function validateNumber()
     if (isNaN(number)) {
         // Not a valid number
         numberInput.value = '';
-        resultMessage.textContent = 'Please enter a valid number.';
-    } else if (number >= 1 && number <= 9) {
+        resultMessage.textContent = `Please enter a valid number. Not: ${number}`;
+    } else if (number < 1 || number > 9) {
+        numberInput.value = ''; 
+        resultMessage.textContent = `You entered a number out of range: ${number}`; 
+    }
+        else {
         // Valid number within the range
         resultMessage.textContent = `You entered: ${number}`;
-    } else {
-        // Number out of range
-        squareInput.value = '';
-        resultMessage.textContent = 'Number is out of range (1-9).';
-    }
+    } 
+    
+    enteredValue = enteredValue.charAt(0);
+    numberInput.value = enteredValue;
 }

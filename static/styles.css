@@ -1,5 +1,6 @@
 body {
-    background-color: rgb(255, 240, 215);
+    background-color: rgb(39, 39, 43);
+    color: rgb(255, 255, 255); 
     text-align: center;
     font-family: Helvetica, Arial, sans-serif; 
 }
@@ -11,7 +12,7 @@ body {
 .sudoku-container{
     margin-left: auto;
     margin-right: auto; 
-    width: 50%; 
+    width: 30%; 
     aspect-ratio: 1/1; 
     font-size: 1.25rem; 
     font-weight: 400; 
@@ -22,15 +23,33 @@ body {
     width: 100%;
     height: 100%;
     border-collapse: collapse;
-    border: 1px solid; 
+    border: 3px solid rgb(255, 255, 255); 
     
 }
 
 
 .sudoku-grid th { 
-    border: 1px solid; 
+    border: 1px solid rgb(255, 255, 255);; 
 }
 
 .sudoku-grid td {
-    border: 1px solid;
+    border: 1px solid rgb(255, 255, 255);;
+}
+
+button {
+    display: inline-flex; 
+    align-items: center;
+    text-align: center; 
+    justify-content: space-around;
+    margin-top: 10px; 
+    margin-right: 5px;
+    margin-left: 5px;
+    width: 100px; 
+    height: 30px;  
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
 }

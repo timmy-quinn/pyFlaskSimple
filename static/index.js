@@ -58,18 +58,20 @@ function populateSudokuGrid(puzzle) {
                 input.type = 'text';
                 input.maxLength = 1; // Limit input to a single character
                 input.pattern = '[1-9]'; // Validate input pattern (1-9)
-                input.addEventListener('input', function () 
-                {
-                    // Ensure the input is a single digit between 1 and 9
-                    const inputValue = this.value.trim();
-                    if (/^[1-9]$/.test(inputValue)) {
-                        puzzle[row][col] = parseInt(inputValue, 10); // Update puzzle data
-                        td.textContent = inputValue; 
-                    } else {
-                        this.value = ''; // Clear invalid input
-                        puzzle[row][col] = 0; // Reset puzzle data
-                    }
-                });
+
+
+                // input.addEventListener('input', function () 
+                // {
+                //     // Ensure the input is a single digit between 1 and 9
+                //     const inputValue = this.value.trim();
+                //     if (/^[1-9]$/.test(inputValue)) {
+                //         puzzle[row][col] = parseInt(inputValue, 10); // Update puzzle data
+                //         td.textContent = inputValue; 
+                //     } else {
+                //         this.value = ''; // Clear invalid input
+                //         puzzle[row][col] = 0; // Reset puzzle data
+                //     }
+                // });
             }
 
             tr.appendChild(td);
@@ -101,25 +103,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function validateNumber() 
 {
-    const numberInput = document.querySelector('.numberInput');
+    let numberInput = document.querySelector('.numberInput');
     const resultMessage = document.getElementById('result'); 
 
-    const enteredValue = numberInput.value.trim();
-    const number = parseInt(enteredValue, 10);
+    let enteredValue = numberInput.value.trim();
+
+    resultMessage.style.backgroundColor = 'blue';
+    
+    if (enteredValue.length > 1) {
+        resultMessage.style.backgroundColor = 'red'; 
+        // If input length is greater than 1, take the last character
+        enteredValue = enteredValue.charAt(enteredValue.length - 1 );
+        numberInput.value = enteredValue;
+    }
+
+    let number = parseInt(enteredValue, 10);
 
     if (isNaN(number)) {
         // Not a valid number
         numberInput.value = '';
         resultMessage.textContent = `Please enter a valid number. Not: ${number}`;
-    } else if (number < 1 || number > 9) {
+    } else if (number < 1 || enteredValue > 9) {
         numberInput.value = ''; 
         resultMessage.textContent = `You entered a number out of range: ${number}`; 
-    }
-        else {
+    } else {
         // Valid number within the range
         resultMessage.textContent = `You entered: ${number}`;
     } 
-    
-    enteredValue = enteredValue.charAt(0);
-    numberInput.value = enteredValue;
 }

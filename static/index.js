@@ -2,7 +2,7 @@ console.log("i am running");
 
 let puzzle1 = 
 [
-    [ 0, 0, 0, 4, 5, 6, 7, 8, 9 ],
+    [ 1, 0, 0, 4, 5, 6, 7, 8, 9 ],
     [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], 
     [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], 
     [ 1, 2, 3, 4, 0, 6, 7, 8, 9 ], 
@@ -39,6 +39,37 @@ let puzzle3 =
     [ 9, 8, 7, 6, 5, 4, 3, 2, 1 ]
 ]
 
+
+function validateNumber(numberInput) 
+{
+    const resultMessage = document.getElementById('result'); 
+
+    let enteredValue = numberInput.value.trim();
+
+    resultMessage.style.backgroundColor = 'blue';
+    
+    if (enteredValue.length > 1) {
+        resultMessage.style.backgroundColor = 'red'; 
+        // If input length is greater than 1, take the last character
+        enteredValue = enteredValue.charAt(enteredValue.length - 1 );
+        numberInput.value = enteredValue;
+    }
+
+    let number = parseInt(enteredValue, 10);
+
+    if (isNaN(number)) {
+        // Not a valid number
+        numberInput.value = '';
+        resultMessage.textContent = `Please enter a valid number. Not: ${number}`;
+    } else if (number < 1 || enteredValue > 9) {
+        numberInput.value = ''; 
+        resultMessage.textContent = `You entered a number out of range: ${number}`; 
+    } else {
+        // Valid number within the range
+        resultMessage.textContent = `You entered: ${number}`;
+    } 
+}
+
 function populateSudokuGrid(puzzle) {
     const grid = document.querySelector('.sudoku-grid');
     while (grid.firstChild) {
@@ -54,11 +85,18 @@ function populateSudokuGrid(puzzle) {
             }
             else if(puzzle[row][col] == 0)
             {
+                
                 const input = document.createElement('input');
-                input.type = 'text';
-                input.maxLength = 1; // Limit input to a single character
-                input.pattern = '[1-9]'; // Validate input pattern (1-9)
-
+                console.log(`At ${row}, ${col} input created`);
+                input.type = 'text'; 
+                input.maxLength = 2; 
+                
+                //input.oninput = "validateNumber()";
+                td.appendChild(input);  
+                // input.type = 'text';
+                // input.maxLength = 2; // Limit input to a single character
+                // input.pattern = '[1-9]'; // Validate input pattern (1-9)
+                input.addEventListener('input', function() { validateNumber(this) }); 
 
                 // input.addEventListener('input', function () 
                 // {
@@ -98,36 +136,4 @@ document.addEventListener('DOMContentLoaded', function() {
         // Implement game reset logic here
         populateSudokuGrid(puzzle2);
     });
-});
-
-
-function validateNumber() 
-{
-    let numberInput = document.querySelector('.numberInput');
-    const resultMessage = document.getElementById('result'); 
-
-    let enteredValue = numberInput.value.trim();
-
-    resultMessage.style.backgroundColor = 'blue';
-    
-    if (enteredValue.length > 1) {
-        resultMessage.style.backgroundColor = 'red'; 
-        // If input length is greater than 1, take the last character
-        enteredValue = enteredValue.charAt(enteredValue.length - 1 );
-        numberInput.value = enteredValue;
-    }
-
-    let number = parseInt(enteredValue, 10);
-
-    if (isNaN(number)) {
-        // Not a valid number
-        numberInput.value = '';
-        resultMessage.textContent = `Please enter a valid number. Not: ${number}`;
-    } else if (number < 1 || enteredValue > 9) {
-        numberInput.value = ''; 
-        resultMessage.textContent = `You entered a number out of range: ${number}`; 
-    } else {
-        // Valid number within the range
-        resultMessage.textContent = `You entered: ${number}`;
-    } 
-}
+});input.addEventListener('input', validateNumber(this)); 

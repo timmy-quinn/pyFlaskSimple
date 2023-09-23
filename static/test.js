@@ -70,40 +70,72 @@ function validateNumber(numberInput)
     } 
 }
 
-function populateSudokuGrid(puzzle) {
-    const grid = document.querySelector('.sudoku-grid');
-    while (grid.firstChild) {
-        grid.removeChild(grid.firstChild);
-    }
+function createGrid(grid)
+{
+    const gridContainer = document.getElementById('grid');
 
-    for (let row = 0; row < 9; row++) {
-        const tr = document.createElement('tr');
-        for (let col = 0; col < 9; col++) {
-            const td = document.createElement('td');
-            if (puzzle[row][col] >=1 && puzzle[row][col] <= 9) {
-                td.textContent = puzzle[row][col];
-            }
-            else if(puzzle[row][col] === 0)
-            {
-                
+    // Loop through the data and populate the grid
+    for (let i = 0; i < grid.length; i++) {
+        const row = document.createElement('div');
+        row.classList.add('grid-row');
+
+        for (let j = 0; j < grid[i].length; j++) {
+            const cell = document.createElement('div');
+            cell.classList.add('grid-cell');
+            if(grid[i][j] === 0) {
                 const input = document.createElement('input');
-                console.log(`At ${row}, ${col} input created`);
+                // console.log(`At ${row}, ${col} input created`);
                 input.className = "sudoku-input"; 
                 input.type = 'text'; 
                 input.maxLength = 2; 
-                //input.oninput = "validateNumber()";
-                td.appendChild(input);  
+                cell.appendChild(input); 
                 input.addEventListener('input', function() { validateNumber(this) }); 
+                // cell.textContent = grid[i][j];
             }
-
-            tr.appendChild(td);
+            else if (grid[i][j] <=9 && grid[i][j]) {
+                cell.textContent = grid[i][j];
+            }
+            // cell.textContent = grid[i][j];
+            row.appendChild(cell);
         }
-        grid.appendChild(tr);
+
+        gridContainer.appendChild(row);
+    }
+
+    //gridContainer.style.gridTemplateColumns = `repeat(${grid[0].length}, 1fr)`;
+    gridContainer.style.gridTemplateRows = `repeat(${grid.length}, 1fr)`;
+
+    
+}; 
+
+function populateSudokuGrid(data) { 
+    // Get a reference to the grid container
+    const gridContainer = document.getElementById('grid');
+
+    // Loop through the data and populate the grid
+    for (let i = 0; i < data.length; i++) {
+        const row = document.createElement('div');
+        row.classList.add('grid-row');
+
+        for (let j = 0; j < data[i].length; j++) {
+            const cell = document.createElement('div');
+            cell.classList.add('grid-cell');
+            if( cell[i][j] <= 9 && cell[i][j] >= 1 ) {
+                cell.textContent = data[i][j];
+            }
+            else if (cell[i][j] == 0) { 
+                
+            }  
+            row.appendChild(cell);
+        }
+
+        gridContainer.appendChild(row);
     }
 }
 
 // Call the function to populate the Sudoku grid
-populateSudokuGrid(puzzle1);
+// populateSudokuGrid(puzzle1);
+createGrid(puzzle1);
 
 document.addEventListener('DOMContentLoaded', function() {
     // Get references to your buttons and game container

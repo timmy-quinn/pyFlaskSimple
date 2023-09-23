@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='test.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <div id="grid" class="grid-container">
+        
+    </div>
+
+   
+    <input type="text" class="numberInput" min="1" max="9" maxlength="2"oninput="validateNumber(this)">
+    <p id="result"></p>
+
+    <script
+        type = "text/javascript"
+        src = "{{url_for('static', filename = 'test.js')}}"
+        ></script>
+
+</body>
+</html>

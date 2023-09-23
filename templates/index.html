@@ -11,14 +11,15 @@
         <h1 class = "title" >Sudoku Generator</h1>
     </div>
     <div class = "sudoku-container">
-        <table class = "sudoku-grid"> 
-        </table>
+        <div class = "sudoku-grid"> 
+        <!-- Your Sudoku cells will be populated here -->
+        </div>
     </div>
 
     <button class = "solve-sudoku"> Solve </button> 
     <button class = "generate-sudoku"> Generate </button>
 
-    <input type="text" class="numberInput" min="1" max="9" maxlength="2" oninput="validateNumber()">
+    <input type="text" class="numberInput" min="1" max="9" maxlength="2"oninput="validateNumber(this)">
     <p id="result"></p>
 
     <script

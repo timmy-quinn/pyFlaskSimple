@@ -4,11 +4,11 @@ views = Blueprint(__name__, "views")
 
 @views.route("/")
 def home():
-    return render_template("index.html", name = "Joe")
+    return render_template("index.html")
 
-@views.route("/profile/<username>")
-def profile(username):
-    return render_template("index.html", name = username)
+@views.route("/test")
+def test():
+    return render_template("test.html")
 
 @views.route("/json")
 def get_json():

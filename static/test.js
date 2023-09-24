@@ -81,20 +81,40 @@ function createGrid(grid)
 
         for (let j = 0; j < grid[i].length; j++) {
             const cell = document.createElement('div');
+            cell.style.margin = '0.25%'
+
+            borderMargin = '1%'; 
+
+            if( i%3 == 0 ) {
+                cell.style.marginTop = borderMargin; 
+            }
+            else if (i == 8) {
+                cell.style.marginBottom = borderMargin; 
+            }
+            if ( j%3 == 0 ) {
+                cell.style.marginLeft= borderMargin; 
+            }
+            else if (j == 8) {
+                cell.style.marginRight = borderMargin; 
+            }
+
             cell.classList.add('grid-cell');
             if(grid[i][j] === 0) {
                 const input = document.createElement('input');
                 // console.log(`At ${row}, ${col} input created`);
                 input.className = "sudoku-input"; 
                 input.type = 'text'; 
-                input.maxLength = 2; 
+                input.maxLength = 2;
+                input.data = 9 * i + j;  
                 cell.appendChild(input); 
                 input.addEventListener('input', function() { validateNumber(this) }); 
                 // cell.textContent = grid[i][j];
             }
-            else if (grid[i][j] <=9 && grid[i][j]) {
+            else if (grid[i][j] <=9 && grid[i][j] > 0) {
                 cell.textContent = grid[i][j];
             }
+            cell.data = 9 * i + j;
+
             // cell.textContent = grid[i][j];
             row.appendChild(cell);
         }
@@ -104,7 +124,6 @@ function createGrid(grid)
 
     //gridContainer.style.gridTemplateColumns = `repeat(${grid[0].length}, 1fr)`;
     gridContainer.style.gridTemplateRows = `repeat(${grid.length}, 1fr)`;
-
     
 }; 
 
@@ -123,12 +142,10 @@ function populateSudokuGrid(data) {
             if( cell[i][j] <= 9 && cell[i][j] >= 1 ) {
                 cell.textContent = data[i][j];
             }
-            else if (cell[i][j] == 0) { 
-                
+            else if (cell[i][j] == 0) {     
             }  
             row.appendChild(cell);
         }
-
         gridContainer.appendChild(row);
     }
 }

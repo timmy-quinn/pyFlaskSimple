@@ -125,30 +125,10 @@ function createGrid(grid)
     //gridContainer.style.gridTemplateColumns = `repeat(${grid[0].length}, 1fr)`;
     gridContainer.style.gridTemplateRows = `repeat(${grid.length}, 1fr)`;
     
-}; 
+};
 
-function populateSudokuGrid(data) { 
-    // Get a reference to the grid container
-    const gridContainer = document.getElementById('grid');
 
-    // Loop through the data and populate the grid
-    for (let i = 0; i < data.length; i++) {
-        const row = document.createElement('div');
-        row.classList.add('grid-row');
 
-        for (let j = 0; j < data[i].length; j++) {
-            const cell = document.createElement('div');
-            cell.classList.add('grid-cell');
-            if( cell[i][j] <= 9 && cell[i][j] >= 1 ) {
-                cell.textContent = data[i][j];
-            }
-            else if (cell[i][j] == 0) {     
-            }  
-            row.appendChild(cell);
-        }
-        gridContainer.appendChild(row);
-    }
-}
 
 // Call the function to populate the Sudoku grid
 // populateSudokuGrid(puzzle1);
@@ -169,4 +149,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Implement game reset logic here
         populateSudokuGrid(puzzle2);
     });
-});input.addEventListener('input', validateNumber(this)); 
+});
+
+input.addEventListener('input', validateNumber(this)); 

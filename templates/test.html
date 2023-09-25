@@ -7,18 +7,48 @@
     <title>Home</title>
 </head>
 <body>
-    <div id="grid" class="grid-container">
-        
+
+    <div>
+        <h1 class = "title" >Sudoku Generator</h1>
     </div>
 
-   
-    <input type="text" class="numberInput" min="1" max="9" maxlength="2"oninput="validateNumber(this)">
+    <div id="grid" class="grid-container">
+    </div>
+
     <p id="result"></p>
+
+    <button class = "solve-sudoku"> Solve </button> 
+    <button class = "generate-sudoku"> Generate </button>
+   
+    <!-- <input type="text" class="numberInput" min="1" max="9" maxlength="2"oninput="validateNumber(this)"> -->
 
     <script
         type = "text/javascript"
         src = "{{url_for('static', filename = 'test.js')}}"
         ></script>
+
+        <script>
+            document.querySelector(".solve-sudoku").addEventListener("click", function() {
+                // Use Fetch API to make an AJAX request to the same page
+                fetch(window.location.href, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ action: 'call_my_function' })
+                })
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("result").innerText = data;
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                });
+            });
+        </script>
+    {% if action == 'call_my_function' %}
+        <p>{{ my_function() }}</p>
+    {% endif %}
 
 </body>
 </html>

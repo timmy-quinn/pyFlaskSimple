@@ -72,7 +72,11 @@ function validateNumber(numberInput)
 
 function createGrid(grid)
 {
+    
     const gridContainer = document.getElementById('grid');
+    while (gridContainer.firstChild) {
+        gridContainer.removeChild(gridContainer.firstChild);
+    }
 
     // Loop through the data and populate the grid
     for (let i = 0; i < grid.length; i++) {
@@ -127,9 +131,6 @@ function createGrid(grid)
     
 };
 
-
-
-
 // Call the function to populate the Sudoku grid
 // populateSudokuGrid(puzzle1);
 createGrid(puzzle1);
@@ -142,13 +143,32 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add click event listeners to your buttons
     generateSudoku.addEventListener('click', function() {
         // Implement game start logic here
-        populateSudokuGrid(puzzle1);
+        createGrid(puzzle1);
     });
 
     resetButton.addEventListener('click', function() {
         // Implement game reset logic here
-        populateSudokuGrid(puzzle2);
+        createGrid(puzzle2);
     });
 });
 
-input.addEventListener('input', validateNumber(this)); 
+input.addEventListener('input', validateNumber(this));
+
+document.querySelector('.solve-sudoku').addEventListener("click", function() {
+    // Use Fetch API to make an AJAX request to the same page
+    console.log("sudoku button pushed"); 
+    fetch(window.location.href, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ action: 'call_my_function' })
+    })
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("result").innerText = data;
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+});

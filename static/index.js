@@ -83,7 +83,7 @@ function populateSudokuGrid(puzzle) {
             if (puzzle[row][col] >=1 && puzzle[row][col] <= 9) {
                 td.textContent = puzzle[row][col];
             }
-            else if(puzzle[row][col] === 0)
+            else if(puzzle[row][col] == 0)
             {
                 
                 const input = document.createElement('input');
